@@ -1,33 +1,148 @@
-.App {
+html, body {
+  background: #fff;
+  font-family: "Helvetica Neue", Verdana, sans-serif;
+  padding-left: 2vw;
+  padding-right: 2vw;
+}
+.item__title {
+  display: block;
+}
+
+.header h1 {
+  animation: blink 5s;
+  animation-iteration-count: infinite;
+  background: rgba(0, 0, 0, 0.2);
+  padding: 10px 15px;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+@keyframes blink {
+  0% {
+      color: white;
+  }
+  50% {
+      color: black;
+  }
+  100% {
+    color: white;
+  }
+}
+
+.header__fixed {
+  background: rgb(236, 92, 66);
+  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+  position: fixed;
+  height: 20;
+  top: 0;
+  left: 0;
+  right: 0;
   text-align: center;
 }
 
-.App-logo {
-  animation: App-logo-spin infinite 20s linear;
-  height: 40vmin;
-  pointer-events: none;
+.content {
+  margin-top: 100px;
 }
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
+.header a {
+  display: block;
+  text-decoration: none;
   color: white;
+  outline: 0;
+
 }
 
-.App-link {
-  color: #61dafb;
+.item {
+  background: rgba(0, 0, 0, 0.05);
+  padding: 10px 15px;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  border-radius: 5px;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.header ul {
+list-style: none;
+margin: 0;
+padding: 0;
+}
+
+.item__title {
+font-size: 20px;
+margin-bottom: 5px;
+text-decoration: none;
+color: #3D77CB;
+}
+
+.item__description {
+color: rgba(0, 0, 0, 0.4);
+}
+
+.pagination {
+list-style: none;
+margin: 10px 10px;
+padding: 0;
+  overflow: hidden;
+}
+.pagination li {
+  float: left;
+}
+
+.pagination a {
+display: block;
+background:  rgb(236, 92, 66);
+text-transform: uppercase;
+font-size: 14px;
+padding: 10px 15px;
+text-decoration: none;
+border-radius: 3px;
+color: #000000;
+font-weight: 500;
+  margin-right: 10px;
+
+}
+
+
+.posts {
+list-style: none;
+margin: 0;
+padding: 10px 15px;
+}
+
+.posts li {
+margin-bottom: 20px;
+}
+
+.post {
+padding: 10px 15px;
+}
+
+.post__title {
+font-size: 24px;
+text-decoration: none;
+display: block;
+color: #3D77CB;
+}
+
+.post__description {
+display: block;
+margin-bottom: 30px;
+}
+
+
+.comments {
+list-style: none;
+margin: 0;
+padding: 0;
+}
+
+.comments .comments {
+margin-top: 20px;
+}
+
+.comments li {
+background: rgba(0, 0, 0, 0.05);
+padding: 10px 15px;
+border: 1px solid rgba(0, 0, 0, 0.1);
+border-radius: 5px;
+}
+
+.comments li + li {
+margin-top: 20px;
 }
