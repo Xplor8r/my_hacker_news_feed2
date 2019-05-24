@@ -1,15 +1,26 @@
 import React from 'react';
+import  { BrowserRouter as Router, Route, Switch} from 'react-router-dom'
+import TopStoriesContainer from './containers/topStoriesContainer'
+import Post from './components/post'
 import './App.css';
 
 function App() {
   return (
-    <div className="app">
-      <header className="header">
-        <div className="header__fixed">
-          <a href="#"><h1>My Hacker News Feed</h1></a>
+    <Router>
+      <div className="app">
+        <header className="header">
+          <div className="header__fixed">
+            <a href="/"><h1>My Hacker News Feed</h1></a>
+          </div>
+        </header>
+        <div className="content">
+          <Switch>
+            <Route exact path="/" component={TopStoriesContainer}/>
+            <Route exact path="/post/:id" component={Post}/>
+          </Switch>
         </div>
-      </header>
-    </div>
+      </div>
+    </Router>
   );
 }
 
