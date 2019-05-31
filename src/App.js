@@ -9,7 +9,6 @@ import './App.css';
 class App extends Component {
   componentWillMount() {
     this.props.fetchPostData();
-    console.log(this.props)
   }
   render() {
     return (
@@ -33,7 +32,8 @@ class App extends Component {
 }
 const mapStateToProps = (state) => {
   return {
-    fetchPostData: state.fetchPostData,
+    postData: state.postData,
+
   }
 }
 const mapDispatchToProps = (dispatch) => {

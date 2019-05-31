@@ -1,15 +1,16 @@
 import React, { Component } from 'react';
-
+import { connect } from 'react-redux';
 
 class TopStoriesContainer extends Component {
 
     render() {
+        console.log(this.props.postData)
         return (
             <div>
                 <ul className="posts">
                     {/* ng-repeat="post in top.posts" */}
                     <li >
-                        <item id="post"></item>
+                        {/* <item id="post"></item> */}
                     </li>
                 </ul>
 
@@ -17,13 +18,15 @@ class TopStoriesContainer extends Component {
                     <ul className="pagination">
                         {/* ng-if="top.page > 0" */}
                         <li >
-                            <a href="" onClick="top.previousPage()">
+                            {/* onClick="top.previousPage()" */}
+                            <a href="/" >
                                 Previous
                             </a>
                         </li>
                         {/* ng-if="top.page < top.totalPages - 1" */}
                         <li >
-                            <a href="" onClick="top.nextPage()">
+                            {/*onClick="top.nextPage()"  */}
+                            <a href="/" >
                                 Next
                             </a>
                         </li>
@@ -36,4 +39,11 @@ class TopStoriesContainer extends Component {
     }
 }
 
-export default TopStoriesContainer
+
+const mapStateToProps = (state) => {
+    return {
+        postData: state.postData,
+    }
+  }
+  
+export default connect(mapStateToProps)(TopStoriesContainer)

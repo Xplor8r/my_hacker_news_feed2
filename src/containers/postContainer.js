@@ -6,17 +6,17 @@ const Post = () => {
         // ng-if="post.data"
         <div className="post" >
         {/* href="{{ post.data.url }}" target="_blank" */}
-            <a className="post__title" href="" target="_blank">
+            <a className="post__title" href="/" target="_blank">
                 {/* {{ post.data.title }} */}
             </a>
-            <a className="post__description">
+            <a className="post__description" href="/">
                 {/* {{ post.data.descendants }} comments {{ post.data.score }} points */}
             </a>
 
             <ul className="comments">
             {/* ng-repeat="comment in post.data.kids" */}
                 <li >
-                    <item id="comment"></item>
+                    {/* <item id="comment"></item> */}
                 </li>
             </ul>
         </div>
