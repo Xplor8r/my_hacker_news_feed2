@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-// import Story from '../components/story';
+import Story from '../components/story';
+import { fetchPost } from '../actions/posts'
 
 // function TopStoriesController(posts) {
 // 	let ctrl = this;
@@ -28,14 +29,14 @@ import { connect } from 'react-redux';
 class TopStoriesContainer extends Component {
 
     render() {
-        let Ids = this.props.postData;
+        let ids = this.props.postIds;
         return (
             <div>
                 <ul className="posts">
                     {/* ng-repeat="post in top.posts" */}
-                    {Ids.map((id) => (
-                            <li>{id}</li>   
-                            // <Story key={id} postId={id} />
+                    {ids.map((id) => (
+                            // <li>{id}</li>   
+                            <Story key={id} story={this.props.fetchPost(id)} />
                     ))}
                     {/* <li >
                         <item id="post"></item> 
@@ -70,8 +71,13 @@ class TopStoriesContainer extends Component {
 
 const mapStateToProps = (state) => {
     return {
-        postData: state.postData,
+        postIds: state.postIds,
     }
   }
   
-export default connect(mapStateToProps)(TopStoriesContainer)
+const mapDispatchToProps = (dispatch) => {
+    return {
+        fetchPost: () => dispatch(fetchPost()),
+    }
+}
+export default connect(mapStateToProps, mapDispatchToProps)(TopStoriesContainer)

@@ -32,7 +32,7 @@ class App extends Component {
 }
 const mapStateToProps = (state) => {
   return {
-    postData: state.postData,
+    postIds: state.postIds,
 
   }
 }
