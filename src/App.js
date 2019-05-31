@@ -1,14 +1,14 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import  { BrowserRouter as Router, Route, Switch} from 'react-router-dom';
-import { fetchPostData } from './actions/posts'
+import { fetchPostIdList } from './actions/posts'
 import TopStoriesContainer from './containers/topStoriesContainer';
 import Post from './containers/postContainer';
 import './App.css';
 
 class App extends Component {
   componentWillMount() {
-    this.props.fetchPostData();
+    this.props.fetchPostIdList();
   }
   render() {
     return (
@@ -38,7 +38,7 @@ const mapStateToProps = (state) => {
 }
 const mapDispatchToProps = (dispatch) => {
   return {
-    fetchPostData: () => dispatch(fetchPostData()),
+    fetchPostIdList: () => dispatch(fetchPostIdList()),
   }
 }
 
