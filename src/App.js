@@ -1,7 +1,7 @@
 import React from 'react';
 import  { BrowserRouter as Router, Route, Switch} from 'react-router-dom'
 import TopStoriesContainer from './containers/topStoriesContainer'
-import Post from './components/post'
+import Post from './containers/postContainer'
 import './App.css';
 
 function App() {
