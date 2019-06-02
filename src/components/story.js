@@ -1,29 +1,47 @@
-import React from 'react';
+import React, {Component} from 'react';
 
-const Story = () => {
+class Story extends Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            data: []
+        };
+    }
+    
+    componentWillMount() {
+        fetch(`https://hacker-news.firebaseio.com/v0/item/${this.props.storyId}.json`)
+          .then(res => res.json())
+          .then(postData => {
+              this.setState({
+                data: postData
+              });
+            },
+          )
+    }
 
-    return (
-        <li id="post">
-            {/* ng-if="item.data" */}
-            <div className="item" >
-            {/* ng-switch="item.data.type" */}
-                <div >
-                    {/* ng-switch-when="story" */}
-                    <div >
-                        {/* href="{{ item.data.url }}" */}
-                        <a className="item__title" href="" target="_blank">
-                            {/* {{ item.data.title }} - {{ (item.data.time * 1000) | date: 'short'}} */}
-                        </a> 
-                        {/* <p>	{{ item.data.score }} points by {{ item.data.by }}</p> */}
-                        {/* ui-sref="post({id: item.data.id})" */}
-                        <a className="item__description" >
-                            {/* {{ item.data.descendants }} comments  */}
-                        </a>
-                    </div>
-                </div>
+    render(){
+        let data = this.state.data
+        return (
+            <div>
+                <li id="post">
+                    {data &&
+                    <div className="item">
+                        <div>
+                            <div>
+                                <a className="item__title" href={data.url} target="_blank">
+                                    { data.title } - {data.time}
+                                </a> 
+                                <p>	{ data.score } points by { data.by }</p>
+                                <a className="item__description" href="post/data.id">
+                                    { data.descendants } comments 
+                                </a>
+                            </div>
+                        </div>
+                    </div>}
+                </li>
             </div>
-        </li>
-    )
+        )
+    }
 }
 
 export default Story

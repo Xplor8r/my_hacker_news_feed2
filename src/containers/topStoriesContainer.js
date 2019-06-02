@@ -3,40 +3,17 @@ import { connect } from 'react-redux';
 import Story from '../components/story';
 import { fetchPost } from '../actions/posts'
 
-// function TopStoriesController(posts) {
-// 	let ctrl = this;
-
-// 	ctrl.page = 0;
-// 	ctrl.totalPosts = posts.data.length;
-// 	ctrl.totalPages = Math.ceil(ctrl.totalPosts / 25);
-
-// 	ctrl.paginatePosts =  () => {
-// 		ctrl.posts = posts.data.slice(ctrl.page * 25, (ctrl.page + 1) * 25);
-// 	};
-
-// 	ctrl.nextPage = () => {
-// 		ctrl.page++;
-// 		ctrl.paginatePosts()
-// 	};
-
-// 	ctrl.previousPage = () => {
-// 		ctrl.page--;
-// 		ctrl.paginatePosts();
-// 	};
-
-// 	ctrl.paginatePosts();
-// }
 class TopStoriesContainer extends Component {
 
     render() {
-        let ids = this.props.postIds;
+        let ids = this.props.postIds.slice(0,25)
         return (
             <div>
                 <ul className="posts">
                     {/* ng-repeat="post in top.posts" */}
-                    {ids.map((id) => (
+                    {ids && ids.map((id) => (
                             // <li>{id}</li>   
-                            <Story key={id} story={this.props.fetchPost(id)} />
+                            <Story key={id} storyId={id} />
                     ))}
                     {/* <li >
                         <item id="post"></item> 
@@ -72,6 +49,7 @@ class TopStoriesContainer extends Component {
 const mapStateToProps = (state) => {
     return {
         postIds: state.postIds,
+        postData: state.postData
     }
   }
   
