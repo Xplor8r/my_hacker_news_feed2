@@ -1,26 +1,48 @@
-import React from 'react';
+import React, { Component } from 'react';
+import PostComment from '../components/postComment'
 
-const Post = () => {
+class Post extends Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            data: []
+        };
+    }
+    
+    componentWillMount() {
+        let id = this.props.match.params.id
+        fetch(`https://hacker-news.firebaseio.com/v0/PostComment/${id}.json`)
+            .then(res => res.json())
+            .then(postData => {
+                this.setState({
+                    data: postData
+                });
+            },
+        )
+    }
 
-    return (
-        // ng-if="post.data"
-        <div className="post" >
-        {/* href="{{ post.data.url }}" target="_blank" */}
-            <a className="post__title" href="/" target="_blank">
-                {/* {{ post.data.title }} */}
-            </a>
-            <a className="post__description" href="/">
-                {/* {{ post.data.descendants }} comments {{ post.data.score }} points */}
-            </a>
+    render(){
+        let data = this.state.data
+        console.log(data)
+        return (
+            <div>
+                {data && <div className="post">
+                    <a className="post__title" href={data.url} target="_blank" rel="noopener noreferrer">
+                        { data.title }
+                    </a>
+                    <a className="post__description" href={data.url}>
+                        { data.descendants } comments { data.score } points
+                    </a>
 
-            <ul className="comments">
-            {/* ng-repeat="comment in post.data.kids" */}
-                <li >
-                    {/* <item id="comment"></item> */}
-                </li>
-            </ul>
-        </div>
-    )
+                    <ul className="comments">
+                        {/* {data.kids.map((id) => (
+                            <PostComment key={id} storyId={id} />  
+                        ))} */}
+                    </ul>
+                </div>}
+            </div>
+        )
+    }
 }
 
 export default Post

@@ -28,11 +28,11 @@ class Story extends Component {
                     <div className="item">
                         <div>
                             <div>
-                                <a className="item__title" href={data.url} target="_blank">
+                                <a className="item__title" href={data.url} target="_blank" rel="noopener noreferrer">
                                     { data.title } - {data.time}
                                 </a> 
                                 <p>	{ data.score } points by { data.by }</p>
-                                <a className="item__description" href="post/data.id">
+                                <a className="item__description" href={"post/" + data.id }>
                                     { data.descendants } comments 
                                 </a>
                             </div>
