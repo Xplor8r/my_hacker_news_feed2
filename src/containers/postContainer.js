@@ -1,43 +1,26 @@
 import React, { Component } from 'react';
-import PostComment from '../components/postComment'
+import  { Link } from 'react-router-dom'
+import Item from '../components/Item'
 
 class Post extends Component {
-    constructor(props) {
-        super(props);
-        this.state = {
-            data: []
-        };
-    }
-    
-    componentWillMount() {
-        let id = this.props.match.params.id
-        fetch(`https://hacker-news.firebaseio.com/v0/PostComment/${id}.json`)
-            .then(res => res.json())
-            .then(postData => {
-                this.setState({
-                    data: postData
-                });
-            },
-        )
-    }
 
     render(){
-        let data = this.state.data
-        console.log(data)
+        let data = this.props.location.state.data
+        // console.log(data)
         return (
             <div>
                 {data && <div className="post">
-                    <a className="post__title" href={data.url} target="_blank" rel="noopener noreferrer">
+                    <Link to={data.url} className="post__title" target="_blank" rel="noopener noreferrer">
                         { data.title }
-                    </a>
-                    <a className="post__description" href={data.url}>
+                    </Link>
+                    <Link to={data.url} className="post__description">
                         { data.descendants } comments { data.score } points
-                    </a>
+                    </Link>
 
                     <ul className="comments">
-                        {/* {data.kids.map((id) => (
-                            <PostComment key={id} storyId={id} />  
-                        ))} */}
+                        {data.kids.map((id) => (
+                            <Item key={id} itemId={id} id="comment"/>  
+                        ))}
                     </ul>
                 </div>}
             </div>
