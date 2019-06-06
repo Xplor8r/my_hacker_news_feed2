@@ -40,23 +40,18 @@ class Item extends Component {
             return (
                 <li>
                     <div className="item">
-                        <div>
-                            <div>
-                                <div class="item__author">
-                                    <p>
-                                        { data.by }
-                                    </p>
-                                    { (data.time * 1000) }
-                                </div>
-                                <div dangerouslySetInnerHTML={{__html: data.text}}></div>
-                        
-                                <ul class="comments">
-                                    {data.kids && data.kids && data.kids.map((id) => (
-                                        <Item key={id} itemId={id} id="comment"/>  
-                                    ))}
-                                </ul>
-                            </div>
+                        <div class="item__author">
+                            <a>
+                                { data.by } 6/5/19 7:29 PM
+                            </a>
                         </div>
+                        <div dangerouslySetInnerHTML={{__html: data.text}}></div>
+                        
+                        <ul class="comments">
+                            {data.kids && data.kids && data.kids.map((id) => (
+                                <Item key={id} itemId={id} id="comment"/>  
+                            ))}
+                        </ul>
                     </div>
                 </li>
             )
@@ -64,17 +59,13 @@ class Item extends Component {
             return (
                 <li>
                     <div className="item">
-                        <div>
-                            <div>
-                                <Link to={data.url} className="item__title" target="_blank" rel="noopener noreferrer">
-                                    { data.title } - {data.time}
-                                </Link> 
-                                <p>	{ data.score } points by { data.by }</p>
-                                <Link to="" className="item__description" onClick={this.handleClick}>
-                                    { data.descendants } comments 
-                                </Link>
-                            </div>
-                        </div>
+                        <Link to={data.url} className="item__title" target="_blank" rel="noopener noreferrer">
+                            { data.title } - 6/5/19 7:29 PM
+                        </Link> 
+                        <p>	{ data.score } points by { data.by }</p>
+                        <Link to="" className="item__description" onClick={this.handleClick}>
+                            { data.descendants } comments 
+                        </Link>
                     </div>
                 </li>
             )
