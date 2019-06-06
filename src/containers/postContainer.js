@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import  { Link } from 'react-router-dom'
 import Item from '../components/Item'
 
-class Post extends Component {
+class PostContainer extends Component {
 
     render(){
         let data = this.props.location.state.data
@@ -28,4 +28,4 @@ class Post extends Component {
     }
 }
 
-export default Post
+export default PostContainer

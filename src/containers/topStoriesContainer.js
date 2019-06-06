@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import Item from '../components/Item';
-import { fetchPost } from '../actions/posts'
 
 class TopStoriesContainer extends Component {
 
@@ -27,41 +26,43 @@ class TopStoriesContainer extends Component {
 
     render() {
         let ids = this.props.postIds.slice(0,25)
-        return (
-            <div>
-                <ul className="posts">
-                    {/* ng-repeat="post in top.posts" */}
-                    {ids && ids.map((id) => (
-                            // <li>{id}</li>   
-                            <Item key={id} itemId={id} id="post" />
-                    ))}
-                    {/* <li >
-                        <item id="post"></item> 
-                    </li> */}
-                </ul>
-
+        if (ids) {
+            return (
                 <div>
-                    <ul className="pagination">
-                        {/* ng-if="top.page > 0" */}
-                        <li >
-                            {/* onClick="top.previousPage()" */}
-                            <a href="/" >
-                                Previous
-                            </a>
-                        </li>
-                        {/* ng-if="top.page < top.totalPages - 1" */}
-                        <li >
-                            {/*onClick="top.nextPage()"  */}
-                            <a href="/" >
-                                Next
-                            </a>
-                        </li>
+                    <ul className="posts">
+                        {/* ng-repeat="post in top.posts" */}
+                        {ids && ids.map((id) => (
+                                // <li>{id}</li>   
+                                <Item key={id} itemId={id} id="post" />
+                        ))}
+                        {/* <li >
+                            <item id="post"></item> 
+                        </li> */}
                     </ul>
 
-                    <div></div>
+                    <div>
+                        <ul className="pagination">
+                            {/* ng-if="top.page > 0" */}
+                            <li >
+                                {/* onClick="top.previousPage()" */}
+                                <a href="/" >
+                                    Previous
+                                </a>
+                            </li>
+                            {/* ng-if="top.page < top.totalPages - 1" */}
+                            <li >
+                                {/*onClick="top.nextPage()"  */}
+                                <a href="/" >
+                                    Next
+                                </a>
+                            </li>
+                        </ul>
+
+                        <div></div>
+                    </div>
                 </div>
-            </div>
-        )
+            )
+        }
     }
 }
 
@@ -69,13 +70,7 @@ class TopStoriesContainer extends Component {
 const mapStateToProps = (state) => {
     return {
         postIds: state.postIds,
-        postData: state.postData
     }
   }
-  
-const mapDispatchToProps = (dispatch) => {
-    return {
-        fetchPost: () => dispatch(fetchPost()),
-    }
-}
-export default connect(mapStateToProps, mapDispatchToProps)(TopStoriesContainer)
+
+export default connect(mapStateToProps)(TopStoriesContainer)

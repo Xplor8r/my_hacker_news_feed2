@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import  { BrowserRouter as Router, Route, Switch} from 'react-router-dom';
 import { fetchPostIdList } from './actions/posts'
 import TopStoriesContainer from './containers/topStoriesContainer';
-import Post from './containers/postContainer';
+import PostContainer from './containers/postContainer';
 import './App.css';
 
 class App extends Component {
@@ -22,7 +22,7 @@ class App extends Component {
           <div className="content">
             <Switch>
               <Route exact path="/" component={TopStoriesContainer}/>
-              <Route exact path="/post/:id" component={Post}/>
+              <Route exact path="/post/:id" component={PostContainer}/>
             </Switch>
           </div>
         </div>
