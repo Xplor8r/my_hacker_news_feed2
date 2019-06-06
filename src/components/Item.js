@@ -46,14 +46,14 @@ class Item extends Component {
                                     <p>
                                         { data.by }
                                     </p>
-                                    { data.time }
+                                    { (data.time * 1000) }
                                 </div>
-                                <div>{data.text}</div>
+                                <div dangerouslySetInnerHTML={{__html: data.text}}></div>
                         
                                 <ul class="comments">
-                                    {/* <li ng-repeat="comment in item.data.kids">
-                                        <Item id="comment"/>
-                                    </li> */}
+                                    {data.kids && data.kids && data.kids.map((id) => (
+                                        <Item key={id} itemId={id} id="comment"/>  
+                                    ))}
                                 </ul>
                             </div>
                         </div>

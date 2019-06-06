@@ -7,9 +7,9 @@ class Post extends Component {
     render(){
         let data = this.props.location.state.data
         // console.log(data)
-        return (
-            <div>
-                {data && <div className="post">
+        if (data) {
+            return (
+                <div className="post">
                     <Link to={data.url} className="post__title" target="_blank" rel="noopener noreferrer">
                         { data.title }
                     </Link>
@@ -18,13 +18,13 @@ class Post extends Component {
                     </Link>
 
                     <ul className="comments">
-                        {data.kids.map((id) => (
+                        {data.kids && data.kids.map((id) => (
                             <Item key={id} itemId={id} id="comment"/>  
                         ))}
                     </ul>
-                </div>}
-            </div>
-        )
+                </div>
+            )
+        }
     }
 }
 
