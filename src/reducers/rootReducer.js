@@ -1,10 +1,12 @@
 import { combineReducers } from 'redux'
 import postIds from './postIdsReducer'
-import idFetch from './idFetchReducer'
+import dataFetch from './dataFetchReducer'
+import postData from './postDataReducer'
 
 const rootReducer = combineReducers({
     postIds,
-    idFetch
+    postData,
+    dataFetch
 })
 
 export default rootReducer
