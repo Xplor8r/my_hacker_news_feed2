@@ -26,9 +26,13 @@ class TopStoriesContainer extends Component {
 
     render() {
         let ids = this.props.postIds.slice(0,25)
+        // console.log(this.state)
+        let { idFetch } = this.props
+
         if (ids) {
             return (
                 <div>
+                    { (!idFetch) &&
                     <ul className="posts">
                         {/* ng-repeat="post in top.posts" */}
                         {ids && ids.map((id) => (
@@ -39,7 +43,7 @@ class TopStoriesContainer extends Component {
                             <item id="post"></item> 
                         </li> */}
                     </ul>
-
+                    }
                     <div>
                         <ul className="pagination">
                             {/* ng-if="top.page > 0" */}
@@ -70,6 +74,7 @@ class TopStoriesContainer extends Component {
 const mapStateToProps = (state) => {
     return {
         postIds: state.postIds,
+        idFetch: state.idFetch
     }
   }
 
