@@ -1,5 +1,7 @@
 import React, { Component} from 'react';
 import  { Redirect, Link } from 'react-router-dom'
+import { fetchPost } from '../actions/posts'
+import { connect } from 'react-redux';
 
 class Item extends Component {
     constructor(props) {
@@ -11,15 +13,8 @@ class Item extends Component {
         this.handleClick = this.handleClick.bind(this);
     }
     
-    componentWillMount() {  
-        fetch(`https://hacker-news.firebaseio.com/v0/item/${this.props.itemId}.json`)
-            .then(res => res.json())
-            .then(postData => {
-                this.setState({
-                    data: postData
-                });
-            },
-        )
+    componentWillMount() { 
+        this.props.fetchPost(this.props)
     }
 
     handleClick(){
@@ -28,6 +23,8 @@ class Item extends Component {
 
     render(){
         let data = this.state.data
+        // let { dataFetch } = this.props
+        // console.log(data)
         if (this.state.redirectToPost) {
             return (
                 <Redirect to={{
@@ -70,7 +67,20 @@ class Item extends Component {
                 </li>
             )
         }
-    }
+    }identifier
 }
         
-export default Item
+const mapStateToProps = (state) => {
+    return {
+        postData: state.postData,
+        dataFetch: state.dataFetch
+    }
+  }
+  const mapDispatchToProps = (dispatch, props) => {
+        return {
+            fetchPost: () => dispatch(fetchPost(props)),
+            
+        }
+  }
+  
+  export default connect(mapStateToProps, mapDispatchToProps)(Item);
