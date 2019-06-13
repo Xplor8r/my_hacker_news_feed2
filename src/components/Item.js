@@ -34,6 +34,20 @@ class Item extends Component {
         this.setState({redirectToPost: true});
     }
 
+    formatDate(unix) {
+        let a = new Date(unix * 1000);
+        let months = ['Jan','Feb','Mar','Apr','May','Jun',
+            'Jul','Aug','Sep','Oct','Nov','Dec'];
+        let year = a.getFullYear();
+        let month = months[a.getMonth()];
+        let date = a.getDate();
+        let hour = a.getHours();
+        let min = a.getMinutes();
+        let sec = a.getSeconds();
+        let time = date + ' ' + month + ' ' + year + ' ' + hour + ':' + min + ':' + sec ;
+        return time;
+    }
+
     render(){
         if (this.state.redirectToPost) {
             return (
@@ -50,7 +64,7 @@ class Item extends Component {
                     {data.type === "comment" ? <div className="item">
                         <div class="item__author">
                             <a>
-                                { data.by } 6/5/19 7:29 PM
+                                { data.by } { this.formatDate(data.time) }
                             </a>
                         </div>
                         <div dangerouslySetInnerHTML={{__html: data.text}}></div>
@@ -63,7 +77,7 @@ class Item extends Component {
                     </div>
                     :<div className="item">
                         <Link to={data.url} className="item__title" target="_blank" rel="noopener noreferrer">
-                            { data.title } - 6/5/19 7:29 PM
+                            { data.title } - { this.formatDate(data.time) }
                         </Link> 
                         <p>	{ data.score } points by { data.by }</p>
                         <Link to="" className="item__description" onClick={this.handleClick}>
