@@ -54,16 +54,14 @@ class TopStoriesContainer extends Component {
                     <div>
                         <ul className="pagination">
                             { this.state.page > 0 &&
-                            <li >
-                                {/* onClick="top.previousPage()" */}
-                                <a href="" onClick={this.previousPage} >
+                            <li>
+                                <a href="/" onClick={this.previousPage} >
                                     Previous
                                 </a>
                             </li>}
                             { this.state.page < this.state.totalPages - 1 &&
-                            <li >
-                                {/*onClick="top.nextPage()"  */}
-                                <a href="" onClick={this.nextPage}>
+                            <li>
+                                <a href="/" onClick={this.nextPage}>
                                     Next
                                 </a>
                             </li>}

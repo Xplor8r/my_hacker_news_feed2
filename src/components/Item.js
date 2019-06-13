@@ -30,7 +30,8 @@ class Item extends Component {
         this.fetchPost(this.props.itemId)
     }
 
-    handleClick(){
+    handleClick(e){
+        e.preventDefault();
         this.setState({redirectToPost: true});
     }
 
@@ -60,14 +61,14 @@ class Item extends Component {
             return (
                 <li>
                     {data.type === "comment" ? <div className="item">
-                        <div class="item__author">
+                        <div className="item__author">
                             <p>
                                 <strong>{ data.by } - { this.formatDate(data.time) }</strong>
                             </p>
                         </div>
                         <div dangerouslySetInnerHTML={{__html: data.text}}></div>
                         
-                        <ul class="comments">
+                        <ul className="comments">
                             {data.kids && data.kids && data.kids.map((id) => (
                                 <Item key={id} itemId={id} id="comment"/>  
                             ))}
@@ -78,7 +79,7 @@ class Item extends Component {
                             { data.title } - { this.formatDate(data.time) }
                         </a> 
                         <p>	{ data.score } points by { data.by }</p>
-                        <Link to="" className="item__description" onClick={this.handleClick}>
+                        <Link to="/" className="item__description" onClick={this.handleClick}>
                             { data.descendants } comments 
                         </Link>
                     </div>}

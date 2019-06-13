@@ -11,9 +11,9 @@ class PostContainer extends Component {
                     <a href={data.url} className="post__title" rel="noopener noreferrer" target="_blank">
                         { data.title }
                     </a>
-                    <a className="post__description">
+                    <p className="post__description">
                         { data.descendants } comments { data.score } points
-                    </a>
+                    </p>
 
                     <ul className="comments">
                         {data.kids && data.kids.map((id) => (
