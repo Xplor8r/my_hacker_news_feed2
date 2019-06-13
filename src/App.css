@@ -1,8 +1,8 @@
 html, body {
   background: #fff;
   font-family: "Helvetica Neue", Verdana, sans-serif;
-  padding-left: 2vw;
-  padding-right: 2vw;
+  padding-left: 2.27vw;
+  padding-right: 2.27vw;
 }
 .item__title {
   display: block;
@@ -41,6 +41,8 @@ html, body {
 
 .content {
   margin-top: 100px;
+  /* margin-left: ;
+  margin-right: ; */
 }
 .header a {
   display: block;

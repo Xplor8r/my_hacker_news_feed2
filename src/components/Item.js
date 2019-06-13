@@ -36,15 +36,13 @@ class Item extends Component {
 
     formatDate(unix) {
         let a = new Date(unix * 1000);
-        let months = ['Jan','Feb','Mar','Apr','May','Jun',
-            'Jul','Aug','Sep','Oct','Nov','Dec'];
-        let year = a.getFullYear();
-        let month = months[a.getMonth()];
+        let year = a.getFullYear().toString().substr(-2);
+        let month = a.getMonth() + 1;
         let date = a.getDate();
-        let hour = a.getHours();
-        let min = a.getMinutes();
-        let sec = a.getSeconds();
-        let time = date + ' ' + month + ' ' + year + ' ' + hour + ':' + min + ':' + sec ;
+        let hour = a.getHours() > 12 ? a.getHours() - 12 : a.getHours();
+        let min = a.getMinutes() < 10 ? "0" + a.getMinutes() : a.getMinutes();
+        let am_pm = a.getHours() >= 12 ? "PM" : "AM";
+        let time = month + '/' + date + '/' + year + ' ' + hour + ':' + min + ' ' + am_pm;
         return time;
     }
 
