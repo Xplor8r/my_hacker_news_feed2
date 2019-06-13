@@ -1,6 +1,5 @@
 import React, { Component} from 'react';
 import  { Redirect, Link } from 'react-router-dom'
-import { connect } from 'react-redux';
 
 class Item extends Component {
     constructor(props) {
@@ -26,7 +25,7 @@ class Item extends Component {
                 })
         )
     }
-    
+
     componentWillMount(){
         this.fetchPost(this.props.itemId)
     }
@@ -80,13 +79,5 @@ class Item extends Component {
         }
     }
 }
-        
-const mapStateToProps = (state) => {
-    return {
-        dataFetch: state.dataFetch
-    }
-}
-
-  
-export default connect(mapStateToProps)(Item);
-        
+ 
+export default Item        
