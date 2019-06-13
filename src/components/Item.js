@@ -1,20 +1,34 @@
 import React, { Component} from 'react';
 import  { Redirect, Link } from 'react-router-dom'
-import { fetchPost } from '../actions/posts'
 import { connect } from 'react-redux';
 
 class Item extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            data: [],
-            redirectToPost: false
+            data: null,
+            redirectToPost: false,
+            fetchPost: false
         };
         this.handleClick = this.handleClick.bind(this);
+        this.fetchPost = this.fetchPost.bind(this);
+    }
+
+    fetchPost(id) {
+        return (
+            fetch(`https://hacker-news.firebaseio.com/v0/item/${id}.json`)
+                .then(res => res.json())
+                .then(postData=>{
+                    this.setState({
+                        data: postData,
+                        fetchPost: true
+                    })
+                })
+        )
     }
     
-    componentWillMount() { 
-        this.props.fetchPost(this.props)
+    componentWillMount(){
+        this.fetchPost(this.props.itemId)
     }
 
     handleClick(){
@@ -22,9 +36,6 @@ class Item extends Component {
     }
 
     render(){
-        let data = this.state.data
-        // let { dataFetch } = this.props
-        // console.log(data)
         if (this.state.redirectToPost) {
             return (
                 <Redirect to={{
@@ -33,10 +44,11 @@ class Item extends Component {
                 }}/>
             )
         }
-        if (data.type === "comment") {
+        if (this.state.fetchPost) {
+            let data = this.state.data
             return (
                 <li>
-                    <div className="item">
+                    {data.type === "comment" ? <div className="item">
                         <div class="item__author">
                             <a>
                                 { data.by } 6/5/19 7:29 PM
@@ -50,12 +62,7 @@ class Item extends Component {
                             ))}
                         </ul>
                     </div>
-                </li>
-            )
-        } else {
-            return (
-                <li>
-                    <div className="item">
+                    :<div className="item">
                         <Link to={data.url} className="item__title" target="_blank" rel="noopener noreferrer">
                             { data.title } - 6/5/19 7:29 PM
                         </Link> 
@@ -63,24 +70,23 @@ class Item extends Component {
                         <Link to="" className="item__description" onClick={this.handleClick}>
                             { data.descendants } comments 
                         </Link>
-                    </div>
+                    </div>}
                 </li>
             )
+        } else {
+            return (
+                <li className="item" />
+            )
         }
-    }identifier
+    }
 }
         
 const mapStateToProps = (state) => {
     return {
-        postData: state.postData,
         dataFetch: state.dataFetch
     }
-  }
-  const mapDispatchToProps = (dispatch, props) => {
-        return {
-            fetchPost: () => dispatch(fetchPost(props)),
-            
-        }
-  }
+}
+
   
-  export default connect(mapStateToProps, mapDispatchToProps)(Item);
+export default connect(mapStateToProps)(Item);
+        
