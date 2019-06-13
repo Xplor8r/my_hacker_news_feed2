@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import  { Link } from 'react-router-dom'
 import Item from '../components/Item'
 
 class PostContainer extends Component {
@@ -9,9 +8,9 @@ class PostContainer extends Component {
         if (data) {
             return (
                 <div className="post">
-                    <Link to={data.url} className="post__title" target="_blank" rel="noopener noreferrer">
+                    <a href={data.url} className="post__title" rel="noopener noreferrer" target="_blank">
                         { data.title }
-                    </Link>
+                    </a>
                     <a className="post__description">
                         { data.descendants } comments { data.score } points
                     </a>

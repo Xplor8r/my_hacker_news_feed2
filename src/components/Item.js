@@ -74,9 +74,9 @@ class Item extends Component {
                         </ul>
                     </div>
                     :<div className="item">
-                        <Link to={data.url} className="item__title" target="_blank" rel="noopener noreferrer">
+                        <a href={data.url} className="item__title" rel="noopener noreferrer" target="_blank">
                             { data.title } - { this.formatDate(data.time) }
-                        </Link> 
+                        </a> 
                         <p>	{ data.score } points by { data.by }</p>
                         <Link to="" className="item__description" onClick={this.handleClick}>
                             { data.descendants } comments 
