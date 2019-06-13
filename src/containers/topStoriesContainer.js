@@ -20,16 +20,18 @@ class TopStoriesContainer extends Component {
         return ids;
     }
 
-	nextPage(){
-		this.setState({page: this.state.page + 1})
+	nextPage(e){
+        e.preventDefault();
+        this.setState(({ page }) => ({ page: page + 1 }))
 		this.paginatePosts()
 	}
 
-	previousPage(){
-		this.setState({page: this.state.page - 1})
+	previousPage(e){
+        e.preventDefault();
+        this.setState(({ page }) => ({ page: page - 1 }))
 		this.paginatePosts();
 	}
-    componentDidMount(){
+    componentWillReceiveProps(){
 	    this.setState({
             totalPosts: this.props.postIds.length,
 	        totalPages: Math.ceil(this.props.postIds.length / 25)
@@ -39,9 +41,7 @@ class TopStoriesContainer extends Component {
     render() {
             let ids = this.paginatePosts()
             let fetching = this.props.dataFetch
-            console.log(this.state)
-            return (
-                
+            return (       
             <div>
                 { !fetching && <div>
                     <ul className="posts">
@@ -62,7 +62,7 @@ class TopStoriesContainer extends Component {
                             { this.state.page < this.state.totalPages - 1 &&
                             <li >
                                 {/*onClick="top.nextPage()"  */}
-                                <a href="" onClick={this.state.nextPage}>
+                                <a href="" onClick={this.nextPage}>
                                     Next
                                 </a>
                             </li>}
