@@ -3,66 +3,77 @@ import { connect } from 'react-redux';
 import Item from '../components/Item';
 
 class TopStoriesContainer extends Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+	        page: 0,
+	        totalPosts: 0,
+	        totalPages: 0
+        };
+        this.paginatePosts = this.paginatePosts.bind(this);
+        this.nextPage = this.nextPage.bind(this);
+        this.previousPage = this.previousPage.bind(this);
+    }
 
-	// this.page = 0;
-	// this.totalPosts = posts.data.length;
-	// this.totalPages = Math.ceil(this.totalPosts / 25);
+	paginatePosts(){
+	    let ids = this.props.postIds.slice(this.state.page * 25, (this.state.page + 1) * 25);
+        return ids;
+    }
 
-	// this.paginatePosts =  () => {
-	// 	this.posts = posts.data.slice(this.page * 25, (this.page + 1) * 25);
-	// };
+	nextPage(){
+		this.setState({page: this.state.page + 1})
+		this.paginatePosts()
+	}
 
-	// this.nextPage = () => {
-	// 	this.page++;
-	// 	this.paginatePosts()
-	// };
-
-	// this.previousPage = () => {
-	// 	this.page--;
-	// 	this.paginatePosts();
-	// };
-
-	// this.paginatePosts();
+	previousPage(){
+		this.setState({page: this.state.page - 1})
+		this.paginatePosts();
+	}
+    componentDidMount(){
+	    this.setState({
+            totalPosts: this.props.postIds.length,
+	        totalPages: Math.ceil(this.props.postIds.length / 25)
+        })
+    }
 
     render() {
-        let ids = this.props.postIds.slice(0,25)
-        // console.log(this.state)
-        if (ids) {
+            let ids = this.paginatePosts()
+            let fetching = this.props.dataFetch
+            console.log(this.state)
             return (
-                <div>
+                
+            <div>
+                { !fetching && <div>
                     <ul className="posts">
-                        {/* ng-repeat="post in top.posts" */}
-                        {ids && ids.map((id) => (
-                                // <li>{id}</li>   
-                                <Item key={id} itemId={id} id="post" />
+                        {ids && ids.map((id) => ( 
+                            <Item key={id} itemId={id} id="post" />
                         ))}
-                        {/* <li >
-                            <item id="post"></item> 
-                        </li> */}
                     </ul>
+
                     <div>
                         <ul className="pagination">
-                            {/* ng-if="top.page > 0" */}
+                            { this.state.page > 0 &&
                             <li >
                                 {/* onClick="top.previousPage()" */}
-                                <a href="/" >
+                                <a href="" onClick={this.previousPage} >
                                     Previous
                                 </a>
-                            </li>
-                            {/* ng-if="top.page < top.totalPages - 1" */}
+                            </li>}
+                            { this.state.page < this.state.totalPages - 1 &&
                             <li >
                                 {/*onClick="top.nextPage()"  */}
-                                <a href="/" >
+                                <a href="" onClick={this.state.nextPage}>
                                     Next
                                 </a>
-                            </li>
+                            </li>}
                         </ul>
 
                         <div></div>
                     </div>
-                </div>
+                </div>}
+            </div>
             )
-        }
+        
     }
 }
 
@@ -70,6 +81,7 @@ class TopStoriesContainer extends Component {
 const mapStateToProps = (state) => {
     return {
         postIds: state.postIds,
+        dataFetch: state.dataFetch
     }
   }
 
