@@ -63,9 +63,9 @@ class Item extends Component {
                 <li>
                     {data.type === "comment" ? <div className="item">
                         <div class="item__author">
-                            <a>
-                                { data.by } { this.formatDate(data.time) }
-                            </a>
+                            <p>
+                                <strong>{ data.by } - { this.formatDate(data.time) }</strong>
+                            </p>
                         </div>
                         <div dangerouslySetInnerHTML={{__html: data.text}}></div>
                         

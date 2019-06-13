@@ -9,4 +9,4 @@ const dataFetch = (state = true, action) => {
     }	
   }	
 
-   export default dataFetch 
+export default dataFetch 

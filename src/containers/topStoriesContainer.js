@@ -30,7 +30,8 @@ class TopStoriesContainer extends Component {
         e.preventDefault();
         this.setState(({ page }) => ({ page: page - 1 }))
 		this.paginatePosts();
-	}
+    }
+    
     componentWillReceiveProps(){
 	    this.setState({
             totalPosts: this.props.postIds.length,
@@ -39,9 +40,9 @@ class TopStoriesContainer extends Component {
     }
 
     render() {
-            let ids = this.paginatePosts()
-            let fetching = this.props.dataFetch
-            return (       
+        let ids = this.paginatePosts()
+        let fetching = this.props.dataFetch
+        return (       
             <div>
                 { !fetching && <div>
                     <ul className="posts">
@@ -72,11 +73,10 @@ class TopStoriesContainer extends Component {
                     </div>
                 </div>}
             </div>
-            )
+        )
         
     }
 }
-
 
 const mapStateToProps = (state) => {
     return {

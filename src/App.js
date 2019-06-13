@@ -30,12 +30,14 @@ class App extends Component {
     );
   }
 }
+
 const mapStateToProps = (state) => {
   return {
     postIds: state.postIds,
 
   }
 }
+
 const mapDispatchToProps = (dispatch) => {
   return {
     fetchPostIdList: () => dispatch(fetchPostIdList()),

@@ -6,7 +6,6 @@ class PostContainer extends Component {
 
     render(){
         let data = this.props.location.state.data
-        // console.log(data)
         if (data) {
             return (
                 <div className="post">
