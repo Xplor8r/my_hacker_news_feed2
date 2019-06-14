@@ -5,6 +5,12 @@
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
+#Video Demo
+[![My Hacker News Feed ReactJS](https://img.youtube.com/vi/H-JZqFYox0c/hqdefault.jpg)](https://youtu.be/H-JZqFYox0c)
+
+# Video Demo Comparison with AngularJS Version
+[![My Hacker News Feed AngularJS vs ReactJS](https://img.youtube.com/vi/HQhZP2Y4a4c/hqdefault.jpg)](https://youtu.be/HQhZP2Y4a4c)
+
 # Install Directions
 
 To see the application in browser, fork and clone. Run npm install, run npm start and then navigate to localhost:3000/ to run the app in the browser.
