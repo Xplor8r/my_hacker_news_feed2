@@ -1,5 +1,5 @@
 # my_hacker_news_feed2
-+ Built Hacker News clone using ReactJS
++ Built Hacker News clone using ReactJS and Redux
 + Gathered data via calls made to [Hacker News API](https://hacker-news.firebaseio.com/v0/topstories.json)
 + Styled content with CSS
 
